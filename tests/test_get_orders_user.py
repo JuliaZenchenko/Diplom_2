@@ -16,7 +16,7 @@ class TestGetOrdersUser:
         assert order_list.status_code == 200 and order_list.json()['success'] is True
         token = response.json().get('accessToken')
         delete_response = StellarBurgesApi.delete_user(token)
-        assert delete_response.status_code == 202 and delete_response.json()["message"] == "User successfully removed"
+        assert delete_response.status_code == 202 and delete_response.json()["message"] == Messages.MESSAGE_SUCCESSFULLY_REMOVED
 
     @allure.title("Проверка получения списка заказов неавторизованного пользователя")
     def test_get_order_list_without_login_user(self):

@@ -12,7 +12,7 @@ class TestLoginUser:
         assert response.status_code == 200
         token = response.json().get('accessToken')
         delete_response = StellarBurgesApi.delete_user(token)
-        assert delete_response.status_code == 202 and delete_response.json()["message"] == "User successfully removed"
+        assert delete_response.status_code == 202 and delete_response.json()["message"] == Messages.MESSAGE_SUCCESSFULLY_REMOVED
 
     allure.title("Проверка авторизации несуществующего пользователя")
     def test_login_user_negativ(self):

@@ -8,7 +8,7 @@ from random import choice
 
 class Helper:
     @allure.step('Генерация почты пароля имени для юзера')
-    def generate_create_user():
+    def generate_create_user(self):
         fake = Faker()
         body = {
             "email": fake.email(domain="yandex.ru"),
@@ -18,14 +18,14 @@ class Helper:
         return body
 
     @allure.step('Генерация почты пароля имени для юзера без одного поля')
-    def generate_create_user_without_one_field():
+    def generate_create_user_without_one_field(self):
         user_body = Helper.generate_create_user()
         field_to_delete = random.choice(list(user_body.keys()))
         del user_body[field_to_delete]
         return user_body
 
     @allure.step('Генерация почты пароля имени для несуществующего юзера')
-    def generate_user():
+    def generate_user(self):
         fake = Faker()
         body = {
             "email": fake.email(domain="yandex.ru"),
@@ -34,7 +34,7 @@ class Helper:
         return body
 
     @allure.step('Генерация почты, пароля и имени для юзера с изменением одного поля')
-    def generate_create_user_with_modified_field():
+    def generate_create_user_with_modified_field(self):
         user_body = Helper.generate_create_user()
         field_to_modify = random.choice(list(user_body.keys()))  # Выбираем поле для изменения
         if field_to_modify == 'email':    # Изменяем значение выбранного поля
@@ -46,7 +46,7 @@ class Helper:
         return user_body
 
     @allure.step("Генерируем рандомный список ингредиентов")
-    def get_random_ingredients():
+    def get_random_ingredients(self):
         response = StellarBurgesApi.ingredients_get_method()
         ingredients = []
 

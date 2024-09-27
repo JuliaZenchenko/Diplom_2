@@ -22,7 +22,7 @@ class TestChangeDataUser:
             assert response.json()['success'] is True
 
         delete_response = StellarBurgesApi.delete_user(token)
-        assert delete_response.status_code == 202 and delete_response.json()["message"] == "User successfully removed"
+        assert delete_response.status_code == 202 and delete_response.json()["message"] == Messages.MESSAGE_SUCCESSFULLY_REMOVED
 
     @pytest.mark.parametrize("new_user_body", [
         {"email": "", "name": "Name", "password": "Password"},  # Пустой email

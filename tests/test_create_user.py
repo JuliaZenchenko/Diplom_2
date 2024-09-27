@@ -14,7 +14,7 @@ class TestCreateUser:
         assert (response.status_code == 200 and 'accessToken' in response.json() and response.json()['success'] is True)
         token = response.json().get('accessToken')
         delete_response = StellarBurgesApi.delete_user(token)
-        assert delete_response.status_code == 202 and delete_response.json()["message"] == "User successfully removed"
+        assert delete_response.status_code == 202 and delete_response.json()["message"] == Messages.MESSAGE_SUCCESSFULLY_REMOVED
 
     @allure.title('Проверка, что нельзя создать пользователя, который уже зарегистрирован')
     def test_create_same_user(self, new_body):
@@ -23,7 +23,7 @@ class TestCreateUser:
         assert user_2.status_code == 403 and user_2.json()['message'] == Messages.ERROR_403_DUBLICATE
         token = user_1.json().get('accessToken')
         delete_response = StellarBurgesApi.delete_user(token)
-        assert delete_response.status_code == 202 and delete_response.json()["message"] == "User successfully removed"
+        assert delete_response.status_code == 202 and delete_response.json()["message"] == Messages.MESSAGE_SUCCESSFULLY_REMOVED
 
     @allure.title('Проверка, что нельзя создать пользователя и не заполнить одно из обязательных полей')
     def test_create_user_without_login(self):
